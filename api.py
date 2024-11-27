@@ -34,8 +34,8 @@ def search():
     conn = sqlite3.connect("data.db")
     c = conn.cursor()
     try:
-        statement = "select * from data where data='" + code + "'"
-        c.execute(statement)
+        statement = "select * from data where data=?"
+        c.execute(statement, (code,))
         found = c.fetchall()
         if found == []:
             return f"Invalid Code<br>{statement}"
